@@ -1,0 +1,1 @@
+export const publicDomains = ['gmail.com', 'hotmail.com', 'yahoo.com']

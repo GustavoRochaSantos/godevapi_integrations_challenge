@@ -1,0 +1,239 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Listagem das APIS",
+    "description": "Esta é a documentação das APIs do projeto",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "Root"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "All services are running!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/integrations/": {
+      "get": {
+        "tags": [
+          "Integrations"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Integrations are running fast!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/integrations/google-hub/": {
+      "post": {
+        "tags": [
+          "Integrations"
+        ],
+        "description": "",
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Sheet ID is required"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/integrations/google-hub/{sheetId}": {
+      "post": {
+        "tags": [
+          "Integrations"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "sheetId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/GoogleHubImport"
+            }
+          }
+        }
+      }
+    },
+    "/integrations/hubspot/": {
+      "get": {
+        "tags": [
+          "Integrations"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Hubspot Integration!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/integrations/hubspot/contact": {
+      "get": {
+        "tags": [
+          "Integrations"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Contacts"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Contact": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "type": "string",
+          "example": "2024-10-03T19:17:59.118Z"
+        },
+        "archived": {
+          "type": "boolean",
+          "example": false
+        },
+        "id": {
+          "type": "string",
+          "example": "64395919479"
+        },
+        "properties": {
+          "type": "object",
+          "properties": {
+            "createdate": {
+              "type": "string",
+              "example": "2024-10-03T19:17:59.118Z"
+            },
+            "email": {
+              "type": "string",
+              "example": "emailmaria@hubspot.com"
+            },
+            "firstname": {
+              "type": "string",
+              "example": "Maria"
+            },
+            "hs_object_id": {
+              "type": "string",
+              "example": "64395919479"
+            },
+            "lastmodifieddate": {
+              "type": "string",
+              "example": "2024-10-03T19:18:07.134Z"
+            },
+            "lastname": {
+              "type": "string",
+              "example": "Johnson (Sample Contact)"
+            }
+          }
+        },
+        "updatedAt": {
+          "type": "string",
+          "example": "2024-10-03T19:18:07.134Z"
+        }
+      }
+    },
+    "Contacts": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Contact"
+          }
+        }
+      }
+    },
+    "GoogleHubImport": {
+      "type": "object",
+      "properties": {
+        "qtdContactsImported": {
+          "type": "number",
+          "example": 0
+        },
+        "qtdContactsAlreadyExist": {
+          "type": "number",
+          "example": 2
+        },
+        "qtdContactsExcludedDomain": {
+          "type": "number",
+          "example": 0
+        },
+        "qtdContactsErrorApi": {
+          "type": "number",
+          "example": 0
+        }
+      }
+    }
+  }
+}
